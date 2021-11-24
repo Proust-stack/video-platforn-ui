@@ -12,13 +12,7 @@ const Home = ({type}) => {
     useEffect(() => {
         const getRandomLists = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/lists${type ? "?type=" + type : "" }${genre ? "&genre=" + genre : ""}`,
-                {
-                    headers: {
-                        authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjFkMDM2ZTRmMDJlODUxZWNmNzljMSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNDIyNTk0MywiZXhwIjoxNjM0ODMwNzQzfQ.NgbZQXZ1gfMn58kovzegcICjJy70sNtTNB_Py3AAu3c"
-                    }
-                }
-                )
+                const response = await axios.get(`http://localhost:5000/api/lists${type ? "?type=" + type : "" }${genre ? "&genre=" + genre : ""}`)
                 setLists(response.data)
             } catch (error) {
                 console.log(error);

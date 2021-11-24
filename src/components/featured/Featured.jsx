@@ -9,13 +9,7 @@ const Featured = ({type, setGenre}) => {
     useEffect(() => {
         const getRandomContent  = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/movies/random?type=${type}`,
-                {
-                    headers: {
-                        authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjFkMDM2ZTRmMDJlODUxZWNmNzljMSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNDIyNTk0MywiZXhwIjoxNjM0ODMwNzQzfQ.NgbZQXZ1gfMn58kovzegcICjJy70sNtTNB_Py3AAu3c"
-                    }
-                }
-                )
+                const response = await axios.get(`http://localhost:5000/api/movies/random?type=${type}`)
                 setMovie(response.data[0])
             } catch (error) {
                 console.log(error);
@@ -30,19 +24,19 @@ const Featured = ({type, setGenre}) => {
                     <span>{type === 'movies' ? "Movies" : "Series"}</span>
                     <select name="genre" id="genre" onChange={e => setGenre(e.target.value)}>
                         <option>Genre</option>
-                        <option value="adventure">Adventure</option>
-                        <option value="comedy">Comedy</option>
-                        <option value="crime">Crime</option>
-                        <option value="fantasy">Fantasy</option>
-                        <option value="historical">Historical</option>
-                        <option value="horror">Horror</option>
-                        <option value="romance">Romance</option>
-                        <option value="sci-fi">Sci-fi</option>
-                        <option value="thriller">Thriller</option>
-                        <option value="western">Western</option>
-                        <option value="animation">Animation</option>
-                        <option value="drama">Drama</option>
-                        <option value="documentary">Documentary</option>
+                        <option value="adventure" disabled>Adventure</option>
+                        <option value="comedy" disabled>Comedy</option>
+                        <option value="crime" disabled>Crime</option>
+                        <option value="fantasy" disabled>Fantasy</option>
+                        <option value="historical" disabled>Historical</option>
+                        <option value="horror" disabled>Horror</option>
+                        <option value="romance" disabled>Romance</option>
+                        <option value="sci-fi" disabled>Sci-fi</option>
+                        <option value="thriller" disabled>Thriller</option>
+                        <option value="western" disabled>Western</option>
+                        <option value="animation" disabled>Animation</option>
+                        <option value="drama" disabled>Drama</option>
+                        <option value="documentary" disabled>Documentary</option>
                     </select>
                 </div>
             )}

@@ -1,32 +1,22 @@
-import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { signUp } from '../../authContext/apiCalls';
+import {AuthContext} from '../../authContext/AuthContext'
 import './registrate.scss'
+
 
 const Registrate = () => {
     const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
-    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const {dispatch, user} = useContext(AuthContext)
     const history = useHistory()
-    const emailRef = useRef()
-    const passRef = useRef()
-    const usernameRef = useRef()
 
-
-    const handleStart = (e) => {
-        setEmail(emailRef.current.value)
-        };
-
-    const handleFinish = async (e) => {
-        e.preventDefault()
-        setPass(passRef.current.value)
-        setUsername(usernameRef.current.value)
-        try {
-            await axios.post(`http://localhost:5000/api/auth/register`, {email, pass, username})
+    const handleClick = async (email, password) => {
+        await signUp(email, password, dispatch)
+        if (user) {
             history.push("/login")
-        } catch (error) {
-            console.log(error)
         }
+        history.push("/register")
         };
     return (
         <div className="registrate">
@@ -44,20 +34,12 @@ const Registrate = () => {
                 <p>
                     Ready to watch? Enter your email to create or restart your membership.
                 </p>
-                {!email ? 
-                    (<div className="input">
-                        <input type="email" name="email" placeholder="email address" ref={emailRef}/>
-                        <button className="registerButton" onClick={handleStart}>Get started</button>
+                    <div className="input">
+                        <input type="email" value={email} placeholder="email address" onChange={e => setEmail(e.target.value)}/>
+                        <input type="password"  value={password} placeholder="password" onChange={e => setPassword(e.target.value)}/>
+                        <button className="registerButton"  onClick={() => handleClick(email, password)}>Join</button>
                     </div>
-                    )
-                    :
-                    (<form className="input">
-                    <input type="text" name="username" placeholder="username" ref={usernameRef}/>
-                    <input type="password" name="password" placeholder="password" ref={passRef}/>
-                    <button className="registerButton" onClick={handleFinish}>Join</button>
-                    </form>
-                    )
-                }
+                    
             </div>
         </div>
     );

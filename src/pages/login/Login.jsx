@@ -1,15 +1,22 @@
 import './login.scss'
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { login } from '../../authContext/apiCalls';
 import {AuthContext} from '../../authContext/AuthContext'
+import { Link, useHistory } from 'react-router-dom';
+
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {dispatch} = useContext(AuthContext)
-    const handleLogin = (e) => {
+    const {dispatch, user, error} = useContext(AuthContext)
+    const history = useHistory()
+    const handleLogin =  (e) => {
         e.preventDefault()
-        login({email, password}, dispatch)
+         login(email, password, dispatch)
+        if (user) {
+            history.push("/")
+        }
+        history.push("/login")
         };
     return (
         <div className="login">
@@ -21,14 +28,14 @@ const Login = () => {
             <div className="container">
                 <form>
                     <h1>Sign In</h1>
-                    <input type="email" placeholder="Email or phone number" onChange={e => setEmail(e.target.value)}/>
-                    <input type="password" placeholder="Password"  onChange={e => setPassword(e.target.value)}/>
+                    {!user && <div>{error} try again, please</div>}
+                    <input type="email" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)}/>
+                    <input type="password" value={password}  placeholder="Password"  onChange={e => setPassword(e.target.value)}/>
                     <button className="loginButton" onClick={handleLogin}>Sign In</button>
                     <span>
-                        New to Netflix? <b>Sign up now.</b>
+                        New to Netflix? <Link to="/register">Sign up now.</Link>
                     </span>
                     <small>
-                        <p>We use CAPTCHA</p> 
                         <b>Learn more</b>.
                     </small>
                 </form>

@@ -36,13 +36,16 @@ const Navbar = () => {
                         <span className="mainlink">movies</span>
                     </Link>
                     <span>new and popular</span>
-                    <span>my list</span>
                 </div>
                 <div className="right">
-                    <Search className="icon"/>
-                    <span>KID</span>
+                    <Link to="/search" className="link">
+                        <Search className="icon"/>
+                    </Link>
                     <Notifications className="icon"/>
-                    <AccountCircle className="icon"/>
+                    <Link to="/personal" className="link">
+                        <AccountCircle className="icon"/>
+                    </Link>
+                    
                     <div className="profile">
                         <ArrowDropDown className="icon"/>
                         <div className="options">

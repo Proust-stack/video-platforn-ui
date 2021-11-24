@@ -1,18 +1,36 @@
-import { createContext, useEffect, useReducer } from "react"
+import { createContext, useEffect, useReducer, useState } from "react"
 import AuthReducer from "./AuthReducer"
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { loginFailure, loginStart, loginSuccess } from "./AuthActions"
 
 const initialState =  {
-    user: JSON.parse(localStorage.getItem("user")) || null,
+    user: null,
     isFetching: false,
-    error: false    
+    error: ''    
 }
 
 export const AuthContext = createContext(initialState)
 export const AuthContextProvider = ( {children} ) => {
     const [state, dispatch] = useReducer(AuthReducer, initialState)
-    useEffect(() => {
-        localStorage.setItem('user', JSON.stringify(state.user))
-    }, [state.user])
+    const auth = getAuth();
+    
+    useEffect(() =>  {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                try {
+                    dispatch(loginStart())
+                    dispatch(loginSuccess({
+                    email: user.email,
+                    token: user.accessToken,
+                    id: user.uid
+                }));
+                } catch (error) {
+                    dispatch(loginFailure(error.message))
+                }
+            }
+            });
+            return unsubscribe
+    }, [])
     return (
         <AuthContext.Provider 
         value={{

@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import { useContext } from 'react';
 import {AuthContext} from './authContext/AuthContext'
+import Personal from './pages/personal/Personal';
+import Search from './pages/search/Search';
 
 const App = () => {
 	const {user} = useContext(AuthContext)
@@ -37,9 +39,15 @@ const App = () => {
 						<Route exact path="/watch">
 							<Watch/>
 						</Route>
+						<Route exact path="/personal">
+							<Personal/>
+						</Route>
+						<Route exact path="/search">
+							<Search/>
+						</Route>
 					</>
 				)}
-				<Redirect to="/"/>
+				<Redirect to="/login"/>
 			</Switch>
     </Router>
   );
