@@ -6,7 +6,7 @@ import ListItem from '../listItem/ListItem'
 export default function List({list}) {
     const [slideNumber, setSlideNumber] = useState(0)
     const [isMoved, setIsMoved] = useState(false)
-    const [clickLimit, setClickLimit] = useState(window.innerWidth / 230)
+    const [clickLimit] = useState(window.innerWidth / 230)
     const listRef = useRef()
     const handlClick = (direction) => {
             let distance = listRef.current.getBoundingClientRect().x - 50

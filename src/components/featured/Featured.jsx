@@ -1,7 +1,6 @@
 import  './featured.scss';
 import React, { useEffect, useState } from 'react';
 import { InfoOutlined, PlayArrow } from '@material-ui/icons';
-import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { axiosInstance } from '../../requestBase';
 const Featured = ({type, setGenre}) => {

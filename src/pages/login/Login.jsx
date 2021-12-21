@@ -2,14 +2,14 @@ import './login.scss'
 import React, { useContext, useState } from 'react';
 import { login } from '../../authContext/apiCalls';
 import {AuthContext} from '../../authContext/AuthContext'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {dispatch, user, error} = useContext(AuthContext)
+    const {dispatch, user} = useContext(AuthContext)
     const history = useHistory()
     const handleLogin =  (e) => {
         e.preventDefault()
