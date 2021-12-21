@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer, useState } from "react"
+import { createContext, useEffect, useReducer } from "react"
 import AuthReducer from "./AuthReducer"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { loginFailure, loginStart, loginSuccess } from "./AuthActions"
@@ -29,7 +29,7 @@ export const AuthContextProvider = ( {children} ) => {
                 }
             }
             });
-            return unsubscribe
+            return () => unsubscribe()
     }, [])
     return (
         <AuthContext.Provider 

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import  './listItem.scss';
 import { Link } from 'react-router-dom';
+import { axiosInstance } from '../../requestBase';
 
 const ListItem = ({index, item}) => {
     const [isHovered, setIsHovered] = useState(false)
@@ -10,7 +11,7 @@ const ListItem = ({index, item}) => {
     useEffect(() => {
         const getMovie = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/movies/find/` + item)
+                const response = await axiosInstance.get(`movies/find/` + item)
                 setMovie(response.data)
             } catch (error) {
                 console.log(error);

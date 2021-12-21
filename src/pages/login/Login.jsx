@@ -3,7 +3,8 @@ import React, { useContext, useState } from 'react';
 import { login } from '../../authContext/apiCalls';
 import {AuthContext} from '../../authContext/AuthContext'
 import { Link, useHistory } from 'react-router-dom';
-
+import Typography from '@material-ui/core/Typography';
+import { Box } from '@material-ui/core';
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -26,17 +27,19 @@ const Login = () => {
                 </div>
             </div>
             <div className="container">
+                <Box sx={{color: 'black', marginBottom: '10px'}}>*test version </Box>
                 <form>
                     <h1>Sign In</h1>
-                    {!user && <div>{error} try again, please</div>}
                     <input type="email" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)}/>
                     <input type="password" value={password}  placeholder="Password"  onChange={e => setPassword(e.target.value)}/>
                     <button className="loginButton" onClick={handleLogin}>Sign In</button>
-                    <span>
-                        New to Netflix? <Link to="/register">Sign up now.</Link>
-                    </span>
+                    {/* <span>
+                        New? <Link to="/register">Sign up now.</Link>
+                    </span> */}
                     <small>
-                        <b>Learn more</b>.
+                        <Typography variant="caption" sx={{fontSize: 6, marginTop: 5}}>
+                            Аутентифицируясь, вы соглашаетесь с использованием cookies для авторизации на этом сайте.
+                        </Typography>
                     </small>
                 </form>
             </div>

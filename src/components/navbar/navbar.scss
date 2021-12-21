@@ -12,10 +12,11 @@
     }
     .container {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between;
-        padding: 0 50px;
-        height: 70px;
+        justify-content: flex-end;
+        padding: 5px 50px;
+        height: 120px;
         .left {
             display: flex;
             align-items: center;
@@ -38,6 +39,7 @@
         .right {
             display: flex;
             align-items: center;
+            
             cursor: pointer;
             .icon {
                 margin: 0 15px;

@@ -1,7 +1,7 @@
 import  './navbar.scss';
 import { AccountCircle, ArrowDropDown, Notifications, Search } from '@material-ui/icons';
 import { SvgIcon } from '@material-ui/core';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../authContext/AuthContext';
 import { logout } from '../../authContext/AuthActions';
@@ -17,15 +17,21 @@ function HomeIcon(props) {
 const Navbar = () => {
     const {dispatch} = useContext(AuthContext)
     const [isScrolled, setIsScrolled] = useState(false)
-    window.onscroll = () => {
-        setIsScrolled(window.pageYOffset === 0 ? false : true)
+    useEffect(() => {
+        window.onscroll = () => {
+            setIsScrolled(window.pageYOffset === 0 ? false : true)
+            
+        }
         return () => window.onscroll = null
-    }
+    }, [])
+   
     return (
         <div className={isScrolled ?  "navbar scrolled" : "navbar"}>
             <div className="container">
                 <div className="left">
-                    <HomeIcon color="secondary"  fontSize="large" className="icon"/>
+                    <Link to="/" className="link">
+                        <HomeIcon color="secondary"  fontSize="large" className="icon"/>
+                    </Link>
                     <Link to="/" className="link">
                     <span>homepage</span>
                     </Link>

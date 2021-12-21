@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { InfoOutlined, PlayArrow } from '@material-ui/icons';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { axiosInstance } from '../../requestBase';
 const Featured = ({type, setGenre}) => {
     const [movie, setMovie] = useState({})
     const [isHovered, setIsHovered] = useState(false)
     useEffect(() => {
         const getRandomContent  = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/movies/random?type=${type}`)
+                const response = await axiosInstance.get(`movies/random?type=${type}`)
                 setMovie(response.data[0])
             } catch (error) {
                 console.log(error);

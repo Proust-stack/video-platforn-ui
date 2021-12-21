@@ -1,7 +1,7 @@
 import './styles/app.scss'
 import Home from './pages/home/Home';
 import Watch from './pages/watch/Watch';
-import Registrate from './pages/register/Registrate';
+// import Registrate from './pages/register/Registrate';
 import Login from './pages/login/Login';
 import {
   BrowserRouter as Router,
@@ -23,7 +23,8 @@ const App = () => {
 						{user ? <Home/> : <Redirect to="/login"/>}
 				</Route>
 				<Route exact path="/register">
-						{!user ? <Registrate/> : <Redirect to="/"/>}
+						{/* {!user ? <Registrate/> : <Redirect to="/"/>} */}
+						{!user ? <Login/> : <Redirect to="/"/>}
 				</Route>
 				<Route exact path="/login">
 						{!user ? <Login/> : <Redirect to="/"/>}
