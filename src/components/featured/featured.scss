@@ -1,4 +1,11 @@
 @import "../../styles/app.scss";
+$breakpoints: (
+        desktop: 1280,
+        ipad: 1024,
+        tablet: 768,
+        mobile: 640
+);
+$media-direction: min;
 
 .featured {
     height: 90vh;
@@ -43,12 +50,28 @@
 					height: 270px;
 					border: none;
 					border-radius: 10px;
+					
 				}
 				video {
 					width: 400px;
 					height: 270px;
 					border: none;
 					border-radius: 10px;
+				}
+				@media (max-width: 600px) {
+					img {
+						width: 200px;
+						height: 135px;
+						border: none;
+						border-radius: 10px;
+						
+					}
+					video {
+						width: 200px;
+						height: 135px;
+						border: none;
+						border-radius: 10px;
+					}
 				}
 			}
 			
