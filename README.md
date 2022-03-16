@@ -15,6 +15,10 @@ Authentication and storage: firebase
 ```
 
 [Deployed here](https://sad-kirch-785a49.netlify.app/) 
+```
+testing access: login: ya@ya.ru, pass: Inter111
+
+```
 
 
 
